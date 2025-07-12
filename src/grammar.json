@@ -160,6 +160,10 @@
         {
           "type": "SYMBOL",
           "name": "_non_quoted_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_link_string"
         }
       ]
     },
@@ -170,6 +174,10 @@
     "_non_quoted_string": {
       "type": "PATTERN",
       "value": "(?:\\\\[\\s#,;{}=+()]|[^\\s#,;{}=+()])+"
+    },
+    "_link_string": {
+      "type": "PATTERN",
+      "value": "@(?:\\\\[\\s#,;{}=+()]|[^\\s#,;{}=+()])+"
     },
     "comment": {
       "type": "TOKEN",

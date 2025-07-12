@@ -52,12 +52,16 @@ module.exports = grammar({
     string: $ => choice(
       $._quoted_string,
       $._non_quoted_string,
+      $._link_string
     ),
 
     _quoted_string: _ => /"(?:\\"|[^"])*"/,
 
     // Non-quoted strings can't contain whitespace or special characters unless escaped
     _non_quoted_string: _ => /(?:\\[\s#,;{}=+()]|[^\s#,;{}=+()])+/,
+
+    // Links have the format @configKey
+    _link_string: _ => /@(?:\\[\s#,;{}=+()]|[^\s#,;{}=+()])+/,
 
     // Comments start with # and continue to the end of the line
     comment: _ => token(prec(-10, /#[^\n]*/)),
