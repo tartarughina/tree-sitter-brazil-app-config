@@ -32,7 +32,7 @@ Add to your Neovim configuration:
 
 ```lua
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "brazil_config" },
+  ensure_installed = { "brazil_app_config" },
   -- ... other config
 }
 ```
