@@ -1,8 +1,8 @@
 {
-  "name": "tree-sitter-brazil-app-config",
+  "name": "tree-sitter-brazil-config",
   "version": "0.1.0",
   "description": "A parser for Brazil Config files (.cfg)",
-  "repository": "https://github.com/tartarughina/tree-sitter-brazil-app-config",
+  "repository": "https://github.com/tartarughina/tree-sitter-brazil-config",
   "license": "MIT",
   "author": {
     "name": "Riccardo Strina",
@@ -14,7 +14,9 @@
     "incremental",
     "parsing",
     "tree-sitter",
-    "brazil_app_config"
+    "brazil",
+    "config",
+    "brazil_config"
   ],
   "files": [
     "grammar.js",

@@ -1,6 +1,6 @@
 {
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
-  "name": "brazil_app_config",
+  "name": "brazil_config",
   "rules": {
     "source_file": {
       "type": "REPEAT",
@@ -61,10 +61,6 @@
         {
           "type": "SYMBOL",
           "name": "list"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "link"
         },
         {
           "type": "SYMBOL",
@@ -166,23 +162,6 @@
           "name": "_non_quoted_string"
         }
       ]
-    },
-    "link": {
-      "type": "PREC",
-      "value": 1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "@"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "string"
-          }
-        ]
-      }
     },
     "_quoted_string": {
       "type": "PATTERN",
