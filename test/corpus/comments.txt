@@ -1,0 +1,53 @@
+=============
+Only comments
+=============
+
+# Some comment
+# Other comment
+
+--------
+
+(source_file
+    (comment)
+    (comment)
+)
+
+=======================================
+Standalone comments and inline comments
+=======================================
+
+# Comment before
+foo = bar; # inline comment
+# Comment after
+
+--------
+
+(source_file
+    (comment)
+    (pair
+        key: (string)
+        value: (string)
+    )
+    (comment)
+    (comment)
+)
+
+===================
+Comments everywhere
+===================
+
+# C1
+a = b; #C5
+#C6
+
+--------
+
+(source_file
+    (comment)
+    (pair
+        key: (string)
+        value: (string)
+    )
+    (comment)
+    (comment)
+)

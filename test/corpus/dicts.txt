@@ -1,0 +1,113 @@
+=================
+Simple dictionary
+=================
+
+*.*.key3 = {
+    key4 = value4;
+    key5 = value5;
+};
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (dictionary
+            (pair
+                key: (string)
+                value: (string)
+            )
+            (pair
+                key: (string)
+                value: (string)
+            )
+        )
+    )
+)
+
+=================
+Empty dictionary
+=================
+
+empty_dict = {};
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (dictionary)
+    )
+)
+
+=================
+Nested dictionary
+=================
+
+map1 = {
+    key1 = value1;
+    key2 = { 
+        key3 = value3;
+    };
+};
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (dictionary
+            (pair
+                key: (string)
+                value: (string)
+            )
+            (pair
+                key: (string)
+                value: (dictionary
+                    (pair
+                        key: (string)
+                        value: (string)
+                    )
+                )
+            )
+        )
+    )
+)
+
+=================
+Dictionary with lists
+=================
+
+map2 = {
+    key1 = (
+        { key2 = value2; },
+        { key3 = value3; }
+    );
+};
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (dictionary
+            (pair
+                key: (string)
+                value: (list
+                    (dictionary
+                        (pair
+                            key: (string)
+                            value: (string)
+                        )
+                    )
+                    (dictionary
+                        (pair
+                            key: (string)
+                            value: (string)
+                        )
+                    )
+                )
+            )
+        )
+    )
+)

@@ -1,0 +1,74 @@
+=============
+Basic strings
+=============
+
+foo = bar;
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (string)
+    )
+)
+
+===========
+With quotes
+===========
+
+"foo" = "bar";
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (string)
+    )
+)
+
+========================
+Weird quotes and escapes
+========================
+
+f"oo = "b\"ar";
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (string)
+    )
+)
+
+======================
+Special character key
+======================
+
+*.*.key1 = value1;
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (string)
+    )
+)
+
+=======================
+Escaped special chars
+=======================
+
+*.*.P3PHeader="policyref=\"http://www.amazon.com/w3c/p3p.xml\",CP=\"AMZN\"";
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (string)
+    )
+)

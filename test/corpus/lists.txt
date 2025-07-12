@@ -1,0 +1,123 @@
+=============
+Simple lists
+=============
+
+*.*.key2 = (value2, value3);
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (list
+            (string)
+            (string)
+        )
+    )
+)
+
+=================
+Empty list
+=================
+
+empty_list = ();
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (list)
+    )
+)
+
+=================
+Nested lists
+=================
+
+nested_list = (("value3", 4), "value5");
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (list
+            (list
+                (string)
+                (string)
+            )
+            (string)
+        )
+    )
+)
+
+=================
+Trailing comma
+=================
+
+trailing_comma = ("value1", "value2",);
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (list
+            (string)
+            (string)
+        )
+    )
+)
+
+=================
+Multiline list
+=================
+
+multiline_list = (
+  "value1",
+  #"value2", 
+);
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (list
+            (string)
+            (comment)
+        )
+    )
+)
+
+=================
+List with maps
+=================
+
+map_list = (
+    { key2 = value2; }, 
+    { key3 = value3; }
+);
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (list
+            (dictionary
+                (pair
+                    key: (string)
+                    value: (string)
+                )
+            )
+            (dictionary
+                (pair
+                    key: (string)
+                    value: (string)
+                )
+            )
+        )
+    )
+)

@@ -1,0 +1,63 @@
+=================
+Append operator
+=================
+
+*.*.map += {
+    key2 = "bar";
+};
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (dictionary
+            (pair
+                key: (string)
+                value: (string)
+            )
+        )
+    )
+)
+
+=================
+Append to list
+=================
+
+*.*.list += (
+    item2,
+    item3,
+);
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (list
+            (string)
+            (string)
+        )
+    )
+)
+
+=================
+Multiple appends
+=================
+
+prod.*.list += (
+    item4,
+    item5,
+);
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (list
+            (string)
+            (string)
+        )
+    )
+)

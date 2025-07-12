@@ -1,0 +1,41 @@
+=================
+Simple link
+=================
+
+*.*.linkKey = @configKey;
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (string)
+    )
+)
+
+=================
+Link in dictionary
+=================
+
+*.*.map = {
+    key1 = @configKey1;
+    key2 = @configKey2;
+};
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (dictionary
+            (pair
+                key: (string)
+                value: (string)
+            )
+            (pair
+                key: (string)
+                value: (string)
+            )
+        )
+    )
+)

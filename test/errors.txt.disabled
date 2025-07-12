@@ -1,0 +1,84 @@
+=================
+Missing semicolon
+=================
+
+foo = bar
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (string)
+    )
+)
+
+=================
+Missing value
+=================
+
+foo = ;
+
+--------
+
+(source_file
+    (ERROR
+        (string)
+    )
+    ";"
+)
+
+=================
+Missing key
+=================
+
+= bar;
+
+--------
+
+(source_file
+    (pair
+        key: (string)
+        value: (string)
+    )
+)
+
+=================
+Unclosed dictionary
+=================
+
+foo = {
+    bar = baz;
+
+--------
+
+(source_file
+    (ERROR
+        (string)
+        "{"
+        (pair
+            key: (string)
+            value: (string)
+        )
+    )
+)
+
+=================
+Unclosed list
+=================
+
+foo = (
+    bar,
+    baz
+
+--------
+
+(source_file
+    (ERROR
+        (string)
+        "("
+        (string)
+        ","
+        (string)
+    )
+)
