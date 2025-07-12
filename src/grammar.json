@@ -1,6 +1,6 @@
 {
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
-  "name": "brazil_config",
+  "name": "brazil_app_config",
   "rules": {
     "source_file": {
       "type": "REPEAT",
