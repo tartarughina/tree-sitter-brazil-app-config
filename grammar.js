@@ -19,20 +19,20 @@ module.exports = grammar({
     source_file: $ => repeat($.pair),
 
     pair: $ => seq(
-      field('outer_key', $._key),
+      $.key,
       field('assignment', choice('=', '+=')),
       field('value', $._value),
       ';',
     ),
 
     inner_pair: $ => seq(
-      field('inner_key', $.string),
+      $.string,
       field('assignment', choice('=', '+=')),
       field('value', $._value),
       ';',
     ),
 
-    _key: $ => seq(
+    key: $ => seq(
       field('stage', $._wildcard_segment),
       token.immediate('.'),
       field('realm', $._wildcard_segment),

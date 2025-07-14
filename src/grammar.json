@@ -13,12 +13,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "outer_key",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_key"
-          }
+          "type": "SYMBOL",
+          "name": "key"
         },
         {
           "type": "FIELD",
@@ -55,12 +51,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "inner_key",
-          "content": {
-            "type": "SYMBOL",
-            "name": "string"
-          }
+          "type": "SYMBOL",
+          "name": "string"
         },
         {
           "type": "FIELD",
@@ -93,7 +85,7 @@
         }
       ]
     },
-    "_key": {
+    "key": {
       "type": "SEQ",
       "members": [
         {

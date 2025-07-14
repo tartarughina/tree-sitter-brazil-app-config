@@ -32,16 +32,6 @@
           }
         ]
       },
-      "inner_key": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "string",
-            "named": true
-          }
-        ]
-      },
       "value": {
         "multiple": false,
         "required": true,
@@ -56,6 +46,60 @@
           },
           {
             "type": "string",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "key",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "wildcard_string",
+            "named": true
+          }
+        ]
+      },
+      "realm": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier_segment",
+            "named": true
+          },
+          {
+            "type": "wildcard",
+            "named": true
+          }
+        ]
+      },
+      "stage": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier_segment",
+            "named": true
+          },
+          {
+            "type": "wildcard",
             "named": true
           }
         ]
@@ -103,66 +147,6 @@
           }
         ]
       },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "wildcard_string",
-            "named": true
-          }
-        ]
-      },
-      "outer_key": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": ".",
-            "named": false
-          },
-          {
-            "type": "identifier_segment",
-            "named": true
-          },
-          {
-            "type": "wildcard",
-            "named": true
-          },
-          {
-            "type": "wildcard_string",
-            "named": true
-          }
-        ]
-      },
-      "realm": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier_segment",
-            "named": true
-          },
-          {
-            "type": "wildcard",
-            "named": true
-          }
-        ]
-      },
-      "stage": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier_segment",
-            "named": true
-          },
-          {
-            "type": "wildcard",
-            "named": true
-          }
-        ]
-      },
       "value": {
         "multiple": false,
         "required": true,
@@ -181,6 +165,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "key",
+          "named": true
+        }
+      ]
     }
   },
   {
