@@ -25,6 +25,13 @@ module.exports = grammar({
       ';',
     ),
 
+    inner_pair: $ => seq(
+      field('key', $.string),
+      field('assignment', choice('=', '+=')),
+      field('value', $._value),
+      ';',
+    ),
+
     _key: $ => seq(
       field('stage', $._wildcard_segment),
       token.immediate('.'),
@@ -41,7 +48,7 @@ module.exports = grammar({
 
     dictionary: $ => seq(
       '{',
-      repeat($.pair),
+      repeat($.inner_pair),
       '}'
     ),
 
