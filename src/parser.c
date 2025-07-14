@@ -13,7 +13,7 @@
 #define ALIAS_COUNT 0
 #define TOKEN_COUNT 16
 #define EXTERNAL_TOKEN_COUNT 0
-#define FIELD_COUNT 6
+#define FIELD_COUNT 7
 #define MAX_ALIAS_SEQUENCE_LENGTH 5
 #define MAX_RESERVED_WORD_SET_SIZE 0
 #define PRODUCTION_ID_COUNT 4
@@ -249,18 +249,20 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
 
 enum ts_field_identifiers {
   field_assignment = 1,
-  field_key = 2,
+  field_inner_key = 2,
   field_name = 3,
-  field_realm = 4,
-  field_stage = 5,
-  field_value = 6,
+  field_outer_key = 4,
+  field_realm = 5,
+  field_stage = 6,
+  field_value = 7,
 };
 
 static const char * const ts_field_names[] = {
   [0] = NULL,
   [field_assignment] = "assignment",
-  [field_key] = "key",
+  [field_inner_key] = "inner_key",
   [field_name] = "name",
+  [field_outer_key] = "outer_key",
   [field_realm] = "realm",
   [field_stage] = "stage",
   [field_value] = "value",
@@ -275,8 +277,8 @@ static const TSMapSlice ts_field_map_slices[PRODUCTION_ID_COUNT] = {
 static const TSFieldMapEntry ts_field_map_entries[] = {
   [0] =
     {field_assignment, 1},
-    {field_key, 0},
     {field_name, 0, .inherited = true},
+    {field_outer_key, 0},
     {field_realm, 0, .inherited = true},
     {field_stage, 0, .inherited = true},
     {field_value, 2},
@@ -286,7 +288,7 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_stage, 0},
   [9] =
     {field_assignment, 1},
-    {field_key, 0},
+    {field_inner_key, 0},
     {field_value, 2},
 };
 

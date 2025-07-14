@@ -14,7 +14,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "key",
+          "name": "outer_key",
           "content": {
             "type": "SYMBOL",
             "name": "_key"
@@ -56,7 +56,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "key",
+          "name": "inner_key",
           "content": {
             "type": "SYMBOL",
             "name": "string"

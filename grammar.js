@@ -19,14 +19,14 @@ module.exports = grammar({
     source_file: $ => repeat($.pair),
 
     pair: $ => seq(
-      field('key', $._key),
+      field('outer_key', $._key),
       field('assignment', choice('=', '+=')),
       field('value', $._value),
       ';',
     ),
 
     inner_pair: $ => seq(
-      field('key', $.string),
+      field('inner_key', $.string),
       field('assignment', choice('=', '+=')),
       field('value', $._value),
       ';',

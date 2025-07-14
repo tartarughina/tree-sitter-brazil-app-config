@@ -32,7 +32,7 @@
           }
         ]
       },
-      "key": {
+      "inner_key": {
         "multiple": false,
         "required": true,
         "types": [
@@ -103,7 +103,17 @@
           }
         ]
       },
-      "key": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "wildcard_string",
+            "named": true
+          }
+        ]
+      },
+      "outer_key": {
         "multiple": true,
         "required": true,
         "types": [
@@ -119,16 +129,6 @@
             "type": "wildcard",
             "named": true
           },
-          {
-            "type": "wildcard_string",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
           {
             "type": "wildcard_string",
             "named": true
