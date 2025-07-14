@@ -60,7 +60,7 @@
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "wildcard_string",
             "named": true
           }
         ]
@@ -107,6 +107,40 @@
     "fields": {}
   },
   {
+    "type": "wildcard_segment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier_segment",
+          "named": true
+        },
+        {
+          "type": "wildcard",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "wildcard_string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "wildcard_segment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -123,6 +157,10 @@
     "named": false
   },
   {
+    "type": ".",
+    "named": false
+  },
+  {
     "type": ";",
     "named": false
   },
@@ -134,6 +172,14 @@
     "type": "comment",
     "named": true,
     "extra": true
+  },
+  {
+    "type": "identifier_segment",
+    "named": true
+  },
+  {
+    "type": "wildcard",
+    "named": true
   },
   {
     "type": "{",

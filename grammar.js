@@ -19,7 +19,7 @@ module.exports = grammar({
     source_file: $ => repeat($.pair),
 
     pair: $ => seq(
-      field('key', $.string),
+      field('key', $.wildcard_string), // Key can now be a wildcard string if it matches the pattern
       field('assignment', choice('=', '+=')),
       field('value', $._value),
       ';',
@@ -57,8 +57,30 @@ module.exports = grammar({
 
     _quoted_string: _ => /"(?:\\"|[^"])*"/,
 
-    // Non-quoted strings can't contain whitespace or special characters unless escaped
-    _non_quoted_string: _ => /(?:\\[\s#,;{}=+()]|[^\s#,;{}=+()])+/,
+    _non_quoted_string: _ => /(?:\\[\s#,;{}=+().]|\\[.\s#,;{}=+()]|[^.\s#,;{}=+()])+/,
+
+    wildcard_string: $ => prec(1, seq( // Use 'prec' to give this rule higher precedence
+      // if its initial part could also be a _non_quoted_string.
+      // This ensures it's chosen when it looks like a wildcard pattern.
+      $.wildcard_segment, // Start with a segment (can be wildcard or identifier)
+      repeat(seq(
+        token.immediate('.'), // Match the dot literally, immediately after the previous segment
+        $.wildcard_segment    // Followed by another segment
+      ))
+    )),
+
+    wildcard_segment: $ => choice(
+      $.wildcard,
+      $.identifier_segment
+    ),
+
+    wildcard: _ => '*', // A simple rule for the wildcard character
+
+    // This should match a segment within a wildcard string (e.g., 'master', 'JavaMediaClient2', 'dev')
+    // It should NOT contain '.', '*', or the main delimiters (;,=,+,(),{})
+    identifier_segment: _ => /[a-zA-Z0-9_-]+/, // Adjusted regex for characters allowed in segments
+    // (letters, numbers, underscore, hyphen)
+
 
     // Links have the format @configKey
     _link_string: _ => /@(?:\\[\s#,;{}=+()]|[^\s#,;{}=+()])+/,

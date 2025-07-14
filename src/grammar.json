@@ -17,7 +17,7 @@
           "name": "key",
           "content": {
             "type": "SYMBOL",
-            "name": "string"
+            "name": "wildcard_string"
           }
         },
         {
@@ -173,7 +173,60 @@
     },
     "_non_quoted_string": {
       "type": "PATTERN",
-      "value": "(?:\\\\[\\s#,;{}=+()]|[^\\s#,;{}=+()])+"
+      "value": "(?:\\\\[\\s#,;{}=+().]|\\\\[.\\s#,;{}=+()]|[^.\\s#,;{}=+()])+"
+    },
+    "wildcard_string": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "wildcard_segment"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "STRING",
+                    "value": "."
+                  }
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "wildcard_segment"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "wildcard_segment": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "wildcard"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier_segment"
+        }
+      ]
+    },
+    "wildcard": {
+      "type": "STRING",
+      "value": "*"
+    },
+    "identifier_segment": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z0-9_-]+"
     },
     "_link_string": {
       "type": "PATTERN",
