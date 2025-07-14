@@ -56,11 +56,49 @@
         ]
       },
       "key": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "wildcard",
+            "named": true
+          },
+          {
+            "type": "wildcard_string",
+            "named": true
+          }
+        ]
+      },
+      "name": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "wildcard_string",
+            "named": true
+          }
+        ]
+      },
+      "realm": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "wildcard",
+            "named": true
+          }
+        ]
+      },
+      "stage": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "wildcard",
             "named": true
           }
         ]
@@ -107,34 +145,15 @@
     "fields": {}
   },
   {
-    "type": "wildcard_segment",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier_segment",
-          "named": true
-        },
-        {
-          "type": "wildcard",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "wildcard_string",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "wildcard_segment",
+          "type": "wildcard",
           "named": true
         }
       ]
@@ -172,10 +191,6 @@
     "type": "comment",
     "named": true,
     "extra": true
-  },
-  {
-    "type": "identifier_segment",
-    "named": true
   },
   {
     "type": "wildcard",

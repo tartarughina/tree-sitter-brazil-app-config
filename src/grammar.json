@@ -17,7 +17,7 @@
           "name": "key",
           "content": {
             "type": "SYMBOL",
-            "name": "wildcard_string"
+            "name": "_key"
           }
         },
         {
@@ -48,6 +48,49 @@
         {
           "type": "STRING",
           "value": ";"
+        }
+      ]
+    },
+    "_key": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "stage",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_wildcard_segment"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "."
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "realm",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_wildcard_segment"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "."
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "wildcard_string"
+          }
         }
       ]
     },
@@ -176,38 +219,34 @@
       "value": "(?:\\\\[\\s#,;{}=+().]|\\\\[.\\s#,;{}=+()]|[^.\\s#,;{}=+()])+"
     },
     "wildcard_string": {
-      "type": "PREC",
-      "value": 1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "wildcard_segment"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "IMMEDIATE_TOKEN",
-                  "content": {
-                    "type": "STRING",
-                    "value": "."
-                  }
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "wildcard_segment"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_wildcard_segment"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "."
                 }
-              ]
-            }
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_wildcard_segment"
+              }
+            ]
           }
-        ]
-      }
+        }
+      ]
     },
-    "wildcard_segment": {
+    "_wildcard_segment": {
       "type": "CHOICE",
       "members": [
         {
@@ -216,7 +255,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "identifier_segment"
+          "name": "_identifier_segment"
         }
       ]
     },
@@ -224,7 +263,7 @@
       "type": "STRING",
       "value": "*"
     },
-    "identifier_segment": {
+    "_identifier_segment": {
       "type": "PATTERN",
       "value": "[a-zA-Z0-9_-]+"
     },

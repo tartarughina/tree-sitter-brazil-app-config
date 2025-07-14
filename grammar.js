@@ -19,10 +19,18 @@ module.exports = grammar({
     source_file: $ => repeat($.pair),
 
     pair: $ => seq(
-      field('key', $.wildcard_string), // Key can now be a wildcard string if it matches the pattern
+      field('key', $._key),
       field('assignment', choice('=', '+=')),
       field('value', $._value),
       ';',
+    ),
+
+    _key: $ => seq(
+      field('stage', $._wildcard_segment),
+      token.immediate('.'),
+      field('realm', $._wildcard_segment),
+      token.immediate('.'),
+      field('name', $.wildcard_string)
     ),
 
     _value: $ => choice(
@@ -59,26 +67,24 @@ module.exports = grammar({
 
     _non_quoted_string: _ => /(?:\\[\s#,;{}=+().]|\\[.\s#,;{}=+()]|[^.\s#,;{}=+()])+/,
 
-    wildcard_string: $ => prec(1, seq( // Use 'prec' to give this rule higher precedence
-      // if its initial part could also be a _non_quoted_string.
-      // This ensures it's chosen when it looks like a wildcard pattern.
-      $.wildcard_segment, // Start with a segment (can be wildcard or identifier)
+    wildcard_string: $ => seq(
+      $._wildcard_segment, // Start with a segment (can be wildcard or identifier)
       repeat(seq(
-        token.immediate('.'), // Match the dot literally, immediately after the previous segment
-        $.wildcard_segment    // Followed by another segment
-      ))
-    )),
+        token.immediate('.'),
+        $._wildcard_segment
+      )
+      )),
 
-    wildcard_segment: $ => choice(
+    _wildcard_segment: $ => choice(
       $.wildcard,
-      $.identifier_segment
+      $._identifier_segment
     ),
 
     wildcard: _ => '*', // A simple rule for the wildcard character
 
     // This should match a segment within a wildcard string (e.g., 'master', 'JavaMediaClient2', 'dev')
     // It should NOT contain '.', '*', or the main delimiters (;,=,+,(),{})
-    identifier_segment: _ => /[a-zA-Z0-9_-]+/, // Adjusted regex for characters allowed in segments
+    _identifier_segment: _ => /[a-zA-Z0-9_-]+/, // Adjusted regex for characters allowed in segments
     // (letters, numbers, underscore, hyphen)
 
 
