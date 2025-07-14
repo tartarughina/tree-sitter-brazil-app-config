@@ -77,14 +77,14 @@ module.exports = grammar({
 
     _wildcard_segment: $ => choice(
       $.wildcard,
-      $._identifier_segment
+      $.identifier_segment
     ),
 
     wildcard: _ => '*', // A simple rule for the wildcard character
 
     // This should match a segment within a wildcard string (e.g., 'master', 'JavaMediaClient2', 'dev')
     // It should NOT contain '.', '*', or the main delimiters (;,=,+,(),{})
-    _identifier_segment: _ => /[a-zA-Z0-9_-]+/, // Adjusted regex for characters allowed in segments
+    identifier_segment: _ => /[a-zA-Z0-9_-]+/, // Adjusted regex for characters allowed in segments
     // (letters, numbers, underscore, hyphen)
 
 
