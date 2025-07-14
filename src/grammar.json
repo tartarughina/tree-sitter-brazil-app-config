@@ -255,7 +255,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_identifier_segment"
+          "name": "identifier_segment"
         }
       ]
     },
@@ -263,7 +263,7 @@
       "type": "STRING",
       "value": "*"
     },
-    "_identifier_segment": {
+    "identifier_segment": {
       "type": "PATTERN",
       "value": "[a-zA-Z0-9_-]+"
     },

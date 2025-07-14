@@ -64,6 +64,10 @@
             "named": false
           },
           {
+            "type": "identifier_segment",
+            "named": true
+          },
+          {
             "type": "wildcard",
             "named": true
           },
@@ -85,8 +89,12 @@
       },
       "realm": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
+          {
+            "type": "identifier_segment",
+            "named": true
+          },
           {
             "type": "wildcard",
             "named": true
@@ -95,8 +103,12 @@
       },
       "stage": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
+          {
+            "type": "identifier_segment",
+            "named": true
+          },
           {
             "type": "wildcard",
             "named": true
@@ -150,8 +162,12 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "identifier_segment",
+          "named": true
+        },
         {
           "type": "wildcard",
           "named": true
@@ -191,6 +207,10 @@
     "type": "comment",
     "named": true,
     "extra": true
+  },
+  {
+    "type": "identifier_segment",
+    "named": true
   },
   {
     "type": "wildcard",
