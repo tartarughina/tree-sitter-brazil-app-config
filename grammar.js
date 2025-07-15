@@ -16,39 +16,43 @@ module.exports = grammar({
   ],
 
   rules: {
-    source_file: $ => repeat($.pair),
+    source_file: $ => repeat($.config),
 
-    pair: $ => seq(
-      $.key,
+    config: $ => seq(
+      field('key', $.key),
       field('assignment', choice('=', '+=')),
       field('value', $._value),
       ';',
     ),
 
-    inner_pair: $ => seq(
-      $.string,
+    property: $ => seq(
+      field('key', $.string),
       field('assignment', choice('=', '+=')),
       field('value', $._value),
       ';',
     ),
 
     key: $ => seq(
-      field('stage', $._wildcard_segment),
+      field('stage', $._pubsub),
       token.immediate('.'),
-      field('realm', $._wildcard_segment),
-      token.immediate('.'),
-      field('name', $.wildcard_string)
+      field('realm', $._pubsub),
+      repeat1(seq(
+        token.immediate('.'),
+        $.identifier
+      ))
     ),
 
     _value: $ => choice(
-      $.dictionary,
-      $.list,
-      $.string
+      prec(2, $.number),
+      prec(2, $.boolean),
+      prec(1, $.dictionary),
+      prec(1, $.list),
+      prec(1, $.string)
     ),
 
     dictionary: $ => seq(
       '{',
-      repeat($.inner_pair),
+      repeat($.property),
       '}'
     ),
 
@@ -72,33 +76,23 @@ module.exports = grammar({
 
     _quoted_string: _ => /"(?:\\"|[^"])*"/,
 
-    _non_quoted_string: _ => /(?:\\[\s#,;{}=+().]|\\[.\s#,;{}=+()]|[^.\s#,;{}=+()])+/,
+    _non_quoted_string: _ => token(prec(-1, /(?:\\[\s#,;{}=+().]|\\[.\s#,;{}=+()]|[^.\s#,;{}=+()])+/)),
 
-    wildcard_string: $ => seq(
-      $._wildcard_segment, // Start with a segment (can be wildcard or identifier)
-      repeat(seq(
-        token.immediate('.'),
-        $._wildcard_segment
-      )
-      )),
+    _link_string: _ => token(prec(-2, /@(?:\\[\s#,;{}=+()]|[^\s#,;{}=+()])+/)),
 
-    _wildcard_segment: $ => choice(
+    number: _ => /-?\d+(\.\d+)?([eE][+-]?\d+)?/,
+
+    boolean: _ => /"?(true|false)"?/,
+
+    _pubsub: $ => choice(
       $.wildcard,
-      $.identifier_segment
+      $.identifier
     ),
 
     wildcard: _ => '*', // A simple rule for the wildcard character
 
-    // This should match a segment within a wildcard string (e.g., 'master', 'JavaMediaClient2', 'dev')
-    // It should NOT contain '.', '*', or the main delimiters (;,=,+,(),{})
-    identifier_segment: _ => /[a-zA-Z0-9_-]+/, // Adjusted regex for characters allowed in segments
-    // (letters, numbers, underscore, hyphen)
+    identifier: _ => /[a-zA-Z0-9_-]+/, // Adjusted regex for characters allowed in segments
 
-
-    // Links have the format @configKey
-    _link_string: _ => /@(?:\\[\s#,;{}=+()]|[^\s#,;{}=+()])+/,
-
-    // Comments start with # and continue to the end of the line
     comment: _ => token(prec(-10, /#[^\n]*/)),
   }
 });

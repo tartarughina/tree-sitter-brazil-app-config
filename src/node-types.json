@@ -1,21 +1,6 @@
 [
   {
-    "type": "dictionary",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "inner_pair",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "inner_pair",
+    "type": "config",
     "named": true,
     "fields": {
       "assignment": {
@@ -32,10 +17,24 @@
           }
         ]
       },
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "key",
+            "named": true
+          }
+        ]
+      },
       "value": {
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "boolean",
+            "named": true
+          },
           {
             "type": "dictionary",
             "named": true
@@ -45,18 +44,27 @@
             "named": true
           },
           {
+            "type": "number",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           }
         ]
       }
-    },
+    }
+  },
+  {
+    "type": "dictionary",
+    "named": true,
+    "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
+      "multiple": true,
+      "required": false,
       "types": [
         {
-          "type": "string",
+          "type": "property",
           "named": true
         }
       ]
@@ -66,22 +74,12 @@
     "type": "key",
     "named": true,
     "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "wildcard_string",
-            "named": true
-          }
-        ]
-      },
       "realm": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "identifier_segment",
+            "type": "identifier",
             "named": true
           },
           {
@@ -95,7 +93,7 @@
         "required": true,
         "types": [
           {
-            "type": "identifier_segment",
+            "type": "identifier",
             "named": true
           },
           {
@@ -104,6 +102,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -115,11 +123,19 @@
       "required": false,
       "types": [
         {
+          "type": "boolean",
+          "named": true
+        },
+        {
           "type": "dictionary",
           "named": true
         },
         {
           "type": "list",
+          "named": true
+        },
+        {
+          "type": "number",
           "named": true
         },
         {
@@ -130,7 +146,7 @@
     }
   },
   {
-    "type": "pair",
+    "type": "property",
     "named": true,
     "fields": {
       "assignment": {
@@ -147,10 +163,24 @@
           }
         ]
       },
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
       "value": {
         "multiple": false,
         "required": true,
         "types": [
+          {
+            "type": "boolean",
+            "named": true
+          },
           {
             "type": "dictionary",
             "named": true
@@ -160,21 +190,15 @@
             "named": true
           },
           {
+            "type": "number",
+            "named": true
+          },
+          {
             "type": "string",
             "named": true
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "key",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -187,7 +211,7 @@
       "required": false,
       "types": [
         {
-          "type": "pair",
+          "type": "config",
           "named": true
         }
       ]
@@ -197,25 +221,6 @@
     "type": "string",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "wildcard_string",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier_segment",
-          "named": true
-        },
-        {
-          "type": "wildcard",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "(",
@@ -246,12 +251,20 @@
     "named": false
   },
   {
+    "type": "boolean",
+    "named": true
+  },
+  {
     "type": "comment",
     "named": true,
     "extra": true
   },
   {
-    "type": "identifier_segment",
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "number",
     "named": true
   },
   {
