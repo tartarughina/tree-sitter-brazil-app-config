@@ -318,6 +318,25 @@
             {
               "type": "SYMBOL",
               "name": "identifier"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "IMMEDIATE_TOKEN",
+                    "content": {
+                      "type": "STRING",
+                      "value": "."
+                    }
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  }
+                ]
+              }
             }
           ]
         }
@@ -357,7 +376,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[\\p{XID_Start}_$][\\p{XID_Continue}\\-_.$]*"
+      "value": "[\\p{XID_Start}_$][\\p{XID_Continue}\\-_$]*"
     },
     "comment": {
       "type": "TOKEN",

@@ -79,7 +79,11 @@ module.exports = grammar({
       ),
       seq(
         '@',
-        $.identifier
+        $.identifier,
+        repeat(seq(
+          token.immediate('.'),
+          $.identifier
+        ))
       )
     ),
 
@@ -94,7 +98,7 @@ module.exports = grammar({
 
     wildcard: _ => '*',
 
-    identifier: _ => /[\p{XID_Start}_$][\p{XID_Continue}\-_.$]*/,
+    identifier: _ => /[\p{XID_Start}_$][\p{XID_Continue}\-_$]*/,
 
     comment: _ => token(prec(-10, /#[^\n]*/)),
   }
