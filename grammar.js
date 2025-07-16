@@ -26,7 +26,7 @@ module.exports = grammar({
     ),
 
     property: $ => seq(
-      field('key', $.string),
+      field('key', $.identifier),
       field('assignment', choice('=', '+=')),
       field('value', $._value),
       ';',
@@ -69,29 +69,32 @@ module.exports = grammar({
     ),
 
     string: $ => choice(
-      $._quoted_string,
-      $._non_quoted_string,
-      $._link_string
+      seq(
+        '"',
+        repeat(choice(
+          /[^\\"\n]+/, // Any character except backslash, double quote, or newline
+          seq('\\', /[\\'"nrt]/) // Escape sequences
+        )),
+        '"'
+      ),
+      seq(
+        '@',
+        $.identifier
+      )
     ),
-
-    _quoted_string: _ => /"(?:\\"|[^"])*"/,
-
-    _non_quoted_string: _ => token(prec(-1, /(?:\\[\s#,;{}=+().]|\\[.\s#,;{}=+()]|[^.\s#,;{}=+()])+/)),
-
-    _link_string: _ => token(prec(-2, /@(?:\\[\s#,;{}=+()]|[^\s#,;{}=+()])+/)),
 
     number: _ => /-?\d+(\.\d+)?([eE][+-]?\d+)?/,
 
-    boolean: _ => /"?(true|false)"?/,
+    boolean: _ => token(prec(1, /(true|false)/)),
 
     _pubsub: $ => choice(
       $.wildcard,
       $.identifier
     ),
 
-    wildcard: _ => '*', // A simple rule for the wildcard character
+    wildcard: _ => '*',
 
-    identifier: _ => /[a-zA-Z0-9_-]+/, // Adjusted regex for characters allowed in segments
+    identifier: _ => /[\p{XID_Start}_$][\p{XID_Continue}\-_.$]*/,
 
     comment: _ => token(prec(-10, /#[^\n]*/)),
   }
