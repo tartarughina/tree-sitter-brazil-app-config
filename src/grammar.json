@@ -182,6 +182,14 @@
             "type": "SYMBOL",
             "name": "string"
           }
+        },
+        {
+          "type": "PREC",
+          "value": 1,
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
         }
       ]
     },

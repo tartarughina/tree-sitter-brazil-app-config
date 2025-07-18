@@ -47,7 +47,8 @@ module.exports = grammar({
       prec(2, $.boolean),
       prec(1, $.dictionary),
       prec(1, $.list),
-      prec(1, $.string)
+      prec(1, $.string),
+      prec(1, $.identifier),
     ),
 
     dictionary: $ => seq(

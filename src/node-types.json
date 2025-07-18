@@ -40,6 +40,10 @@
             "named": true
           },
           {
+            "type": "identifier",
+            "named": true
+          },
+          {
             "type": "list",
             "named": true
           },
@@ -131,6 +135,10 @@
           "named": true
         },
         {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "list",
           "named": true
         },
@@ -183,6 +191,10 @@
           },
           {
             "type": "dictionary",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           },
           {
